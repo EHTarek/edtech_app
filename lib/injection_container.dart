@@ -3,8 +3,8 @@ import 'package:edtech_app/data/cached/preferences.dart';
 import 'package:edtech_app/features/dashboard/data/data_source/dashboard_remote_data_source.dart';
 import 'package:edtech_app/features/dashboard/data/repositories/dashboard_repository_impl.dart';
 import 'package:edtech_app/features/dashboard/domain/repositories/dashboard_repository.dart';
-import 'package:edtech_app/features/dashboard/domain/use_cases/get_dashboard_products_category.dart';
-import 'package:edtech_app/features/dashboard/presentation/business_logic/dashboard_products_category_bloc/dashboard_products_category_bloc.dart';
+import 'package:edtech_app/features/dashboard/domain/use_cases/get_dashboard_enrolled_courses.dart';
+import 'package:edtech_app/features/dashboard/presentation/business_logic/dashboard_enrolled_courses_bloc/dashboard_enrolled_courses_bloc.dart';
 import 'package:edtech_app/log.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -24,7 +24,7 @@ init() async {
   );
   // Use Cases
   sl.registerLazySingleton(
-    () => GetDashboardProductsCategory(
+    () => GetDashboardEnrolledCourses(
       dashboardRepository: sl(),
     ),
   );

@@ -13,6 +13,7 @@ class _AuthSignupScreenState extends State<AuthSignupScreen> {
   final _auth = FirebaseAuth.instance;
   late String email;
   late String password;
+
   @override
   void initState() {
     super.initState();
@@ -61,15 +62,14 @@ class _AuthSignupScreenState extends State<AuthSignupScreen> {
                 const SizedBox(height: 24.0),
                 OutlinedButton(
                   onPressed: () async {
-                    try {
-                      final newUser = await _auth.createUserWithEmailAndPassword(
-                          email: email, password: password);
+                    /*try {
+                      final newUser =
+                          await _auth.createUserWithEmailAndPassword(
+                              email: email, password: password);
                       if (newUser != null) {
                         //Navigate to Dashboard
                       }
-                    } catch (e) {
-                      print(e);
-                    }
+                    } catch (e) {}*/
                   },
                   child: const Text('Signup'),
                 ),
@@ -81,4 +81,3 @@ class _AuthSignupScreenState extends State<AuthSignupScreen> {
     );
   }
 }
-

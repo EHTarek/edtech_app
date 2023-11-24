@@ -24,7 +24,7 @@ class RouteGenerator {
       case Routes.kAuthSignupScreen:
         return MaterialPageRoute(builder: (_) => const AuthSignupScreen());
       case Routes.kDashboardScreen:
-        return MaterialPageRoute(builder: (_) => const DashboardScreen());
+        return MaterialPageRoute(builder: (_) => DashboardScreen());
 
       //Error pages
       default:

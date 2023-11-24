@@ -43,6 +43,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/app_ui/
     - assets/fonts/
     - assets/fonts/poppins/
     - assets/fonts/inter/

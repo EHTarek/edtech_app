@@ -5,8 +5,8 @@ import 'package:edtech_app/constants/app_observer.dart';
 import 'package:edtech_app/constants/navigation/route_generator.dart';
 import 'package:edtech_app/constants/navigation/routes.dart';
 import 'package:edtech_app/constants/theme/app_theme.dart';
-import 'package:edtech_app/features/dashboard/domain/use_cases/get_dashboard_products_category.dart';
-import 'package:edtech_app/features/dashboard/presentation/business_logic/dashboard_products_category_bloc/dashboard_products_category_bloc.dart';
+import 'package:edtech_app/features/dashboard/domain/use_cases/get_dashboard_enrolled_courses.dart';
+import 'package:edtech_app/features/dashboard/presentation/business_logic/dashboard_enrolled_courses_bloc/dashboard_enrolled_courses_bloc.dart';
 import 'package:edtech_app/firebase_options.dart';
 import 'package:edtech_app/injection_container.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => DashboardProductsCategoryBloc(
-            getDashboardProductsCategory: sl<GetDashboardProductsCategory>(),
+            getDashboardProductsCategory: sl<GetDashboardEnrolledCourses>(),
           ),
         ),
       ],
@@ -61,12 +61,14 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: AppTheme.lightColorScheme,
+          fontFamily: 'Poppins',
         ),
         darkTheme: ThemeData(
           useMaterial3: true,
           colorScheme: AppTheme.darkColorScheme,
+          fontFamily: 'Poppins',
         ),
-        themeMode: ThemeMode.system,
+        themeMode: ThemeMode.light,
 
         /// Navigation
         initialRoute: Routes.kRoot,

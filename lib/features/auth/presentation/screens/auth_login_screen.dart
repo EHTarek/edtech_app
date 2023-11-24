@@ -1,3 +1,4 @@
+import 'package:edtech_app/constants/navigation/routes.dart';
 import 'package:edtech_app/features/auth/presentation/screens/views/auth_title_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -61,17 +62,31 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                 const SizedBox(height: 24.0),
                 OutlinedButton(
                   onPressed: () async {
-                    try {
+                    Navigator.pushNamed(context, Routes.kAuthSignupScreen);
+
+                    /*try {
                       final user = await _auth.signInWithEmailAndPassword(
                           email: email, password: password);
                       if(user != null){
                         //Navigate to dashboard
                       }
-                    }catch(e){
-                      print(e);
-                    }
+                    }catch(e){}*/
                   },
                   child: const Text('Register'),
+                ),
+                OutlinedButton(
+                  onPressed: () async {
+                    Navigator.pushNamed(context, Routes.kDashboardScreen);
+
+                    /*try {
+                      final user = await _auth.signInWithEmailAndPassword(
+                          email: email, password: password);
+                      if(user != null){
+                        //Navigate to dashboard
+                      }
+                    }catch(e){}*/
+                  },
+                  child: const Text('Dashboard'),
                 ),
               ],
             ),

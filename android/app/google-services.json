@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "607439926911",
+    "project_id": "gettransapps",
+    "storage_bucket": "gettransapps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:607439926911:android:5217ea6450fbd789d6714a",
+        "android_client_info": {
+          "package_name": "com.example.edtech_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDasGQ0Piwh7lsYS2Wp2I7loJgGowePOGw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:607439926911:android:789c7f16de43ceb2d6714a",
+        "android_client_info": {
+          "package_name": "com.gettransapps.secure_plus_fast_vpn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDasGQ0Piwh7lsYS2Wp2I7loJgGowePOGw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

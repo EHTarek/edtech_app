@@ -1,0 +1,7 @@
+## CLI Command: flutter clean && flutter pub get && flutter pub run flutter_launcher_icons -f flutter_launcher_icons.yaml
+## Package: https://pub.dev/packages/flutter_launcher_icons
+#
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/app_logo.png"

@@ -1,5 +1,7 @@
+import 'package:edtech_app/features/auth/presentation/business_logic/user_auth_bloc/user_auth_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthSignupScreen extends StatefulWidget {
   const AuthSignupScreen({super.key});
@@ -116,6 +118,13 @@ class _AuthSignupScreenState extends State<AuthSignupScreen> {
                     onPressed: () async {
                       if (signupFormKey.currentState != null &&
                           signupFormKey.currentState!.validate()) {
+                        context.read<UserAuthBloc>().add(
+                          UserAuthEventSignUp(
+                            email: emailController.text,
+                            password: passwordController.text,
+                          ),
+                        );
+
                         /*try {
                       final newUser =
                           await _auth.createUserWithEmailAndPassword(

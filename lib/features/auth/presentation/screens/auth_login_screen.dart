@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:edtech_app/constants/navigation/routes.dart';
+import 'package:edtech_app/features/auth/presentation/business_logic/user_auth_bloc/user_auth_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthLoginScreen extends StatefulWidget {
   const AuthLoginScreen({super.key});
@@ -99,7 +101,8 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                               emailController.text = value;
                             },
                             validator: (value) => 'Enter a valid email address',
-                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             decoration: const InputDecoration(
                               hintText: 'Enter your email',
                               labelText: 'Enter your email',
@@ -120,7 +123,8 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                               passwordController.text = value;
                             },
                             validator: (value) => 'Enter a valid password',
-                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             decoration: const InputDecoration(
                               hintText: 'Enter your password',
                               labelText: 'Enter your password',
@@ -147,6 +151,13 @@ class _AuthLoginScreenState extends State<AuthLoginScreen> {
                             //Navigate to dashboard
                           }
                         }catch(e){}*/
+
+                          context.read<UserAuthBloc>().add(
+                                UserAuthEventLogin(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                ),
+                              );
                         }
                       },
                       style: ElevatedButton.styleFrom(

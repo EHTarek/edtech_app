@@ -8,17 +8,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'dashboard_enrolled_courses_event.dart';
 part 'dashboard_enrolled_courses_state.dart';
 
-class DashboardProductsCategoryBloc extends Bloc<DashboardEnrolledCoursesEvent,
+class DashboardEnrolledCoursesBloc extends Bloc<DashboardEnrolledCoursesEvent,
     DashboardEnrolledCoursesState> {
-  DashboardProductsCategoryBloc({required this.getDashboardProductsCategory})
+  DashboardEnrolledCoursesBloc({required this.getDashboardProductsCategory})
       : super(DashboardEnrolledCoursesInitial()) {
     on<DashboardEnrolledCoursesEventFetchData>(
-        _onDashboardProductsCategoryEventFetchData);
+        _onDashboardEnrolledCoursesEventFetchData);
   }
 
   final GetDashboardEnrolledCourses getDashboardProductsCategory;
 
-  _onDashboardProductsCategoryEventFetchData(
+  _onDashboardEnrolledCoursesEventFetchData(
       DashboardEnrolledCoursesEventFetchData event,
       Emitter<DashboardEnrolledCoursesState> emit) async {
     emit(DashboardEnrolledCoursesInitial());

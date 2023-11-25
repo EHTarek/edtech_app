@@ -16,7 +16,7 @@ class DashboardRepositoryImpl implements DashboardRepository {
   });
 
   @override
-  Future<Either<Failure, DashboardEnrolledCoursesEntity>>
+  Future<Either<Failure, List<DashboardEnrolledCoursesEntity>>>
       getDashboardEnrolledCourses() async {
     if (await networkInfo.isConnected) {
       try {

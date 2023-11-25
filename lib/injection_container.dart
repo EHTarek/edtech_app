@@ -1,5 +1,6 @@
 import 'package:edtech_app/core/network/network_info.dart';
 import 'package:edtech_app/data/cached/preferences.dart';
+import 'package:edtech_app/features/auth/presentation/business_logic/user_auth_bloc/user_auth_bloc.dart';
 import 'package:edtech_app/features/dashboard/data/data_source/dashboard_remote_data_source.dart';
 import 'package:edtech_app/features/dashboard/data/repositories/dashboard_repository_impl.dart';
 import 'package:edtech_app/features/dashboard/domain/repositories/dashboard_repository.dart';
@@ -15,10 +16,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 GetIt sl = GetIt.instance;
 
 init() async {
+  ///! Features - User Authentication
+//Bloc
+  sl.registerFactory<UserAuthBloc>(
+    () => UserAuthBloc(
+      log: sl<Log>(),
+    ),
+  );
+
   ///! Features - Dashboard
   //Bloc
-  sl.registerFactory<DashboardProductsCategoryBloc>(
-    () => DashboardProductsCategoryBloc(
+  sl.registerFactory<DashboardEnrolledCoursesBloc>(
+    () => DashboardEnrolledCoursesBloc(
       getDashboardProductsCategory: sl(),
     ),
   );

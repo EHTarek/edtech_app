@@ -28,3 +28,13 @@ class UserAuthSignupFailed extends UserAuthState {
   @override
   List<Object> get props => [];
 }
+
+class UserAuthSignOutSuccess extends UserAuthState {
+  @override
+  List<Object> get props => [];
+}
+
+class UserAuthError extends UserAuthState {
+  @override
+  List<Object> get props => [];
+}

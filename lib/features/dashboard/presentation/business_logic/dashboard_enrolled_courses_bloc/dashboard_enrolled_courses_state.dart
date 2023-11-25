@@ -10,7 +10,7 @@ class DashboardEnrolledCoursesInitial extends DashboardEnrolledCoursesState {
 }
 
 class DashboardEnrolledCoursesLoaded extends DashboardEnrolledCoursesState {
-  final DashboardEnrolledCoursesEntity enrolledCoursesEntity;
+  final List<DashboardEnrolledCoursesEntity> enrolledCoursesEntity;
 
   const DashboardEnrolledCoursesLoaded({required this.enrolledCoursesEntity});
 

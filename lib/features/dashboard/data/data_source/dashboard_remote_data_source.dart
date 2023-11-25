@@ -1,12 +1,8 @@
-import 'dart:convert';
-
-import 'package:edtech_app/core/error/exception.dart';
-import 'package:edtech_app/data/api/api.dart';
 import 'package:edtech_app/features/dashboard/data/models/dashboard_enrolled_courses_model.dart';
 import 'package:http/http.dart';
 
 abstract class DashboardRemoteDataSource {
-  Future<DashboardEnrolledCoursesModel> getDashboardEnrolledCourses();
+  Future<List<DashboardEnrolledCoursesModel>> getDashboardEnrolledCourses();
 }
 
 class DashboardRemoteDataSourceImpl implements DashboardRemoteDataSource {
@@ -15,22 +11,22 @@ class DashboardRemoteDataSourceImpl implements DashboardRemoteDataSource {
   DashboardRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<DashboardEnrolledCoursesModel> getDashboardEnrolledCourses() async {
-    final response = await client.get(
-      Api.getDashboardEnrolledCourses(),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-    );
-
-    if (response.statusCode == 200) {
-      return DashboardEnrolledCoursesModel.fromJson(
-          json.decode(utf8.decode(response.bodyBytes)));
-    } else if (response.statusCode == 401) {
-      throw UnauthorizedException();
-    } else {
-      throw ServerException();
-    }
+  Future<List<DashboardEnrolledCoursesModel>>
+      getDashboardEnrolledCourses() async {
+    List<DashboardEnrolledCoursesModel> courses = [
+      const DashboardEnrolledCoursesModel(
+        image: 'https://etienneyamsi.com/img/what-is-an-algorithm.png',
+        numberOfModules: 18,
+        title: 'Algorithm',
+        id: 'course1213',
+      ),
+      const DashboardEnrolledCoursesModel(
+        image: 'https://prepbytes-misc-images.s3.ap-south-1.amazonaws.com/assets/1644826783284-3.%20Data%20Structures.png',
+        numberOfModules: 18,
+        title: 'Data Structure',
+        id: 'course1214',
+      ),
+    ];
+    return courses;
   }
 }

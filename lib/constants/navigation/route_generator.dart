@@ -1,6 +1,7 @@
 import 'package:edtech_app/constants/navigation/routes.dart';
 import 'package:edtech_app/features/auth/presentation/screens/auth_login_screen.dart';
 import 'package:edtech_app/features/auth/presentation/screens/auth_signup_screen.dart';
+import 'package:edtech_app/features/dashboard/presentation/screens/dashboard_course_player_screen/dashboared_course_player_screen.dart';
 import 'package:edtech_app/features/dashboard/presentation/screens/dashboard_screen.dart';
 import 'package:edtech_app/injection_container.dart';
 import 'package:edtech_app/log.dart';
@@ -24,7 +25,10 @@ class RouteGenerator {
       case Routes.kAuthSignupScreen:
         return MaterialPageRoute(builder: (_) => const AuthSignupScreen());
       case Routes.kDashboardScreen:
-        return MaterialPageRoute(builder: (_) => DashboardScreen());
+        return MaterialPageRoute(builder: (_) => const DashboardScreen());
+      case Routes.kDashboardCoursePlayerScreen:
+        return MaterialPageRoute(
+            builder: (_) => const DashboardCoursePlayerScreen());
 
       //Error pages
       default:

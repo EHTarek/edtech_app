@@ -1,3 +1,4 @@
+import 'package:edtech_app/constants/navigation/routes.dart';
 import 'package:edtech_app/features/dashboard/domain/entities/dashboard_enrolled_courses_entity.dart';
 import 'package:edtech_app/features/dashboard/presentation/business_logic/dashboard_enrolled_courses_bloc/dashboard_enrolled_courses_bloc.dart';
 import 'package:edtech_app/features/dashboard/presentation/screens/views/dashboard_title_view.dart';
@@ -42,32 +43,6 @@ class DashboardHomeScreen extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             const SliverToBoxAdapter(child: SizedBox(height: 12)),
-            SliverToBoxAdapter(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Enrolled Courses',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  // TextButton(
-                  //   onPressed: () {},
-                  //   child: const Text('See all'),
-                  // ),
-                ],
-              ),
-            ),
-            const SliverToBoxAdapter(
-              child: SizedBox(
-                width: 20,
-                child: Divider(
-                  height: 4,
-                  thickness: 1,
-                  endIndent: 150,
-                ),
-              ),
-            ),
-            const SliverToBoxAdapter(child: SizedBox(height: 12)),
             BlocBuilder<DashboardEnrolledCoursesBloc,
                 DashboardEnrolledCoursesState>(
               builder: (context, enrolledCourseState) {
@@ -109,90 +84,92 @@ class EnrolledCourseCardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.hardEdge,
-      child: InkWell(
-        onTap: (){},
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  ClipOval(
-                    child: SizedBox(
-                      height: 80,
-                      width: 80,
-                      child: Image.network(
-                        enrolledCoursesEntity.image,
-                        fit: BoxFit.cover,
+      elevation: 2,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                ClipOval(
+                  child: SizedBox(
+                    height: 80,
+                    width: 80,
+                    child: Image.network(
+                      enrolledCoursesEntity.image,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        enrolledCoursesEntity.title,
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
-                    ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.person_pin_outlined,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          const SizedBox(width: 12),
+                          Text(
+                            enrolledCoursesEntity.instructor,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          enrolledCoursesEntity.title,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        const SizedBox(height: 12),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.person_pin_outlined,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            const SizedBox(width: 12),
-                            Text(
-                              enrolledCoursesEntity.instructor,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Course Progress',
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
-                ],
+                ),
+                Expanded(
+                  child: LinearProgressIndicator(
+                    value: enrolledCoursesEntity.completedModules /
+                        enrolledCoursesEntity.numberOfModules,
+                    backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              'Modules Completed ${enrolledCoursesEntity.completedModules} of ${enrolledCoursesEntity.numberOfModules}',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: OutlinedButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                      context, Routes.kDashboardCoursePlayerScreen);
+                },
+                style: OutlinedButton.styleFrom(
+                  side:
+                      BorderSide(color: Theme.of(context).colorScheme.primary),
+                ),
+                child: const Text('Continue Course'),
               ),
-              const SizedBox(height: 12),
-              Text(
-                'Course Progress',
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Progress Bar
-                        LinearProgressIndicator(
-                          value: enrolledCoursesEntity.numberOfModules /
-                              enrolledCoursesEntity.completedModules,
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          'Modules Completed ${enrolledCoursesEntity.completedModules}/${enrolledCoursesEntity.numberOfModules}',
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Icon(
-                    Icons.play_circle,
-                    size: 48,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ],
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

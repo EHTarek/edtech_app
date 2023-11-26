@@ -2,6 +2,7 @@ import 'package:edtech_app/core/error/exception.dart';
 import 'package:edtech_app/core/error/failure.dart';
 import 'package:edtech_app/core/network/network_info.dart';
 import 'package:edtech_app/features/dashboard/data/data_source/dashboard_remote_data_source.dart';
+import 'package:edtech_app/features/dashboard/domain/entities/dashboard_course_details_entity.dart';
 import 'package:edtech_app/features/dashboard/domain/entities/dashboard_enrolled_courses_entity.dart';
 import 'package:edtech_app/features/dashboard/domain/repositories/dashboard_repository.dart';
 import 'package:dartz/dartz.dart';
@@ -29,5 +30,11 @@ class DashboardRepositoryImpl implements DashboardRepository {
     } else {
       return const Left(ConnectionFailure(message: 'No Internet Connection!'));
     }
+  }
+
+  @override
+  Future<Either<Failure, List<DashboardCourseDetailsEntity>>> getDashboardCourseDetails() {
+    // TODO: implement getDashboardCourseDetails
+    throw UnimplementedError();
   }
 }

@@ -7,23 +7,18 @@ class DashboardCoursePlayerScreen extends StatefulWidget {
   const DashboardCoursePlayerScreen({super.key});
 
   @override
-  State<DashboardCoursePlayerScreen> createState() => _DashboardCoursePlayerScreenState();
+  State<DashboardCoursePlayerScreen> createState() =>
+      _DashboardCoursePlayerScreenState();
 }
 
-class _DashboardCoursePlayerScreenState extends State<DashboardCoursePlayerScreen> {
+class _DashboardCoursePlayerScreenState
+    extends State<DashboardCoursePlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const DashboardTitleView(title: 'Course Details'),
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.dashboard,
-            size: 24,
-            color: Colors.white,
-          ),
-        ),
+        leading: const DashboardLeadingView(),
         toolbarHeight: 56,
         backgroundColor: Theme.of(context).colorScheme.primary,
         systemOverlayStyle: SystemUiOverlayStyle.light,
@@ -39,12 +34,50 @@ class _DashboardCoursePlayerScreenState extends State<DashboardCoursePlayerScree
           ),
         ],
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: VideoPlayerView(),
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: CustomScrollView(
+          slivers: [
+            const SliverToBoxAdapter(child: SizedBox(height: 12)),
+            const SliverToBoxAdapter(
+              child: VideoPlayerView(),
+            ),
+            const SliverToBoxAdapter(child: SizedBox(height: 12)),
+            SliverToBoxAdapter(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  OutlinedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(
+                          color: Theme.of(context).colorScheme.primary),
+                    ),
+                    child: const Text('Previous'),
+                  ),
+                  OutlinedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(
+                          color: Theme.of(context).colorScheme.primary),
+                    ),
+                    child: const Text('Next'),
+                  ),
+                  OutlinedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(
+                          color: Theme.of(context).colorScheme.primary),
+                    ),
+                    child: const Text('Bookmark'),
+                  ),
+                ],
+              ),
+            ),
+            const SliverToBoxAdapter(child: SizedBox(height: 12)),
+
+          ],
+        ),
       ),
     );
   }
@@ -60,6 +93,6 @@ class VideoPlayerView extends StatefulWidget {
 class _VideoPlayerViewState extends State<VideoPlayerView> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const AspectRatio(aspectRatio: 16 / 9, child: Placeholder());
   }
 }

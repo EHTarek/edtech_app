@@ -19,12 +19,17 @@ class DashboardRemoteDataSourceImpl implements DashboardRemoteDataSource {
         numberOfModules: 18,
         title: 'Algorithm',
         id: 'course1213',
+        instructor: 'Mr. Abc',
+        completedModules: 5,
       ),
       const DashboardEnrolledCoursesModel(
-        image: 'https://prepbytes-misc-images.s3.ap-south-1.amazonaws.com/assets/1644826783284-3.%20Data%20Structures.png',
+        image:
+            'https://prepbytes-misc-images.s3.ap-south-1.amazonaws.com/assets/1644826783284-3.%20Data%20Structures.png',
         numberOfModules: 18,
         title: 'Data Structure',
         id: 'course1214',
+        instructor: 'Mr. Xyz',
+        completedModules: 12,
       ),
     ];
     return courses;

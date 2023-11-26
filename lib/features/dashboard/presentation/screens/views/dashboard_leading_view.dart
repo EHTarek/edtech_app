@@ -11,7 +11,7 @@ class DashboardLeadingView extends StatelessWidget {
       },
       icon: const Icon(
         Icons.arrow_back_ios_new_outlined,
-        color: Colors.black87,
+        color: Colors.white,
       ),
     );
   }

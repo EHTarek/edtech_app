@@ -6,6 +6,8 @@ import 'package:edtech_app/constants/navigation/route_generator.dart';
 import 'package:edtech_app/constants/navigation/routes.dart';
 import 'package:edtech_app/constants/theme/app_theme.dart';
 import 'package:edtech_app/features/auth/presentation/business_logic/user_auth_bloc/user_auth_bloc.dart';
+import 'package:edtech_app/features/dashboard/domain/use_cases/get_dashboard_enrolled_courses.dart';
+import 'package:edtech_app/features/dashboard/presentation/business_logic/dashboard_enrolled_courses_bloc/dashboard_enrolled_courses_bloc.dart';
 import 'package:edtech_app/firebase_options.dart';
 import 'package:edtech_app/injection_container.dart';
 import 'package:edtech_app/log.dart';
@@ -52,6 +54,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => UserAuthBloc(
             log: sl<Log>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => DashboardEnrolledCoursesBloc(
+            getDashboardProductsCategory: sl<GetDashboardEnrolledCourses>(),
           ),
         ),
       ],

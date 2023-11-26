@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 
 class DashboardTitleView extends StatelessWidget {
-  const DashboardTitleView({super.key});
+  const DashboardTitleView({super.key, required this.title});
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: AppBar().preferredSize.height - 16,
-      child: const Image(
-        image: AssetImage(
-          'assets/images/app_logo.png',
-        ),
-        fit: BoxFit.fitHeight,
-      ),
+    return Text(
+      title,
+      style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
     );
   }
 }

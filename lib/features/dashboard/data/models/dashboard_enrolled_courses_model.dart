@@ -6,6 +6,8 @@ class DashboardEnrolledCoursesModel extends DashboardEnrolledCoursesEntity {
     required super.title,
     required super.numberOfModules,
     required super.image,
+    required super.instructor,
+    required super.completedModules,
   });
 
   factory DashboardEnrolledCoursesModel.fromJson(Map<String, dynamic> json) =>
@@ -14,5 +16,7 @@ class DashboardEnrolledCoursesModel extends DashboardEnrolledCoursesEntity {
         title: json['title'] ?? '',
         numberOfModules: json['numberOfModules'] ?? 0,
         image: json['image'] ?? '',
+        instructor: json['instructor'] ?? '',
+        completedModules: json['completedModules'] ?? 0,
       );
 }

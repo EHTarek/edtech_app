@@ -1,8 +1,11 @@
+import 'package:edtech_app/features/dashboard/domain/use_cases/get_dashboard_enrolled_courses.dart';
+import 'package:edtech_app/features/dashboard/presentation/business_logic/dashboard_enrolled_courses_bloc/dashboard_enrolled_courses_bloc.dart';
 import 'package:edtech_app/features/dashboard/presentation/screens/dashboard_bookmarks_screen/dashboard_bookmarks_screen.dart';
 import 'package:edtech_app/features/dashboard/presentation/screens/dashboard_courses_screen/dashboard_courses_screen.dart';
 import 'package:edtech_app/features/dashboard/presentation/screens/dashboard_home_screen/dashboard_home_screen.dart';
+import 'package:edtech_app/injection_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -18,6 +21,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
     const DashboardCoursesScreen(),
     const DashboardBookmarksScreen(),
   ];
+
+  @override
+  void initState() {
+    context
+        .read<DashboardEnrolledCoursesBloc>()
+        .add(DashboardEnrolledCoursesEventFetchData());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    DashboardEnrolledCoursesBloc(
+      getDashboardProductsCategory: sl<GetDashboardEnrolledCourses>(),
+    ).close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

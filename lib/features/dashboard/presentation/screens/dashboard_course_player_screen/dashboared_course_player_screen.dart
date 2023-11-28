@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:video_player/video_player.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class DashboardCoursePlayerScreen extends StatefulWidget {
   const DashboardCoursePlayerScreen({super.key});
@@ -64,53 +66,6 @@ class _DashboardCoursePlayerScreenState
             const SliverToBoxAdapter(child: SizedBox(height: 12)),
             const SliverToBoxAdapter(
               child: VideoPlayerView(),
-            ),
-            const SliverToBoxAdapter(child: SizedBox(height: 12)),
-            SliverToBoxAdapter(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(
-                          color: Theme.of(context).colorScheme.primary),
-                      minimumSize: Size.zero, // Set this
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 4,
-                      ),
-                    ),
-                    child: const Text('Previous'),
-                  ),
-                  OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(
-                          color: Theme.of(context).colorScheme.primary),
-                      minimumSize: Size.zero, // Set this
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 4,
-                      ),
-                    ),
-                    child: const Text('Next'),
-                  ),
-                  OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(
-                          color: Theme.of(context).colorScheme.primary),
-                      minimumSize: Size.zero, // Set this
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 4,
-                      ),
-                    ),
-                    child: const Text('Bookmark'),
-                  ),
-                ],
-              ),
             ),
             const SliverToBoxAdapter(child: SizedBox(height: 12)),
             BlocBuilder<DashboardCourseDetailsBloc,
@@ -237,11 +192,88 @@ class VideoPlayerView extends StatefulWidget {
 }
 
 class _VideoPlayerViewState extends State<VideoPlayerView> {
+  late final YoutubePlayerController _controller;
+
+  @override
+  void initState() {
+    _controller = YoutubePlayerController(
+      initialVideoId: 'ZONoMgeGAbI',
+      flags: const YoutubePlayerFlags(
+        autoPlay: true,
+        mute: true,
+      ),
+    );
+    super.initState();
+
+  }
+
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const AspectRatio(
-      aspectRatio: 16 / 9,
-      child: Placeholder(),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        AspectRatio(
+          aspectRatio: 16/8,
+          child: YoutubePlayer(
+            controller: _controller,
+            bottomActions: [
+              CurrentPosition(),
+              ProgressBar(isExpanded: true),
+            ],
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            OutlinedButton(
+              onPressed: () {},
+              style: OutlinedButton.styleFrom(
+                side: BorderSide(
+                    color: Theme.of(context).colorScheme.primary),
+                minimumSize: Size.zero, // Set this
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 4,
+                ),
+              ),
+              child: const Text('Previous'),
+            ),
+            OutlinedButton(
+              onPressed: () {},
+              style: OutlinedButton.styleFrom(
+                side: BorderSide(
+                    color: Theme.of(context).colorScheme.primary),
+                minimumSize: Size.zero, // Set this
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 4,
+                ),
+              ),
+              child: const Text('Next'),
+            ),
+            OutlinedButton(
+              onPressed: () {},
+              style: OutlinedButton.styleFrom(
+                side: BorderSide(
+                    color: Theme.of(context).colorScheme.primary),
+                minimumSize: Size.zero, // Set this
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 4,
+                ),
+              ),
+              child: const Text('Bookmark'),
+            ),
+          ],
+        )
+      ],
     );
   }
 }

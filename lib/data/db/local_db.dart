@@ -82,7 +82,7 @@ class LocalDbImpl {
     final db = await instance.database;
 
     await db.rawQuery(
-      'DELETE FROM $BookMarkedVideoFields WHERE ${BookMarkedVideoFields.id}=${bookMarkedVideoModel.id}',
+      'DELETE FROM $BookMarkedVideoFields WHERE ${BookMarkedVideoFields.id}==${bookMarkedVideoModel.id}',
     );
   }
 

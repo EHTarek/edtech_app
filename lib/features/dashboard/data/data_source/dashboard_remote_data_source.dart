@@ -1,8 +1,11 @@
+import 'package:edtech_app/features/dashboard/data/models/dashboard_course_details_model.dart';
 import 'package:edtech_app/features/dashboard/data/models/dashboard_enrolled_courses_model.dart';
 import 'package:http/http.dart';
 
 abstract class DashboardRemoteDataSource {
   Future<List<DashboardEnrolledCoursesModel>> getDashboardEnrolledCourses();
+
+  Future<List<DashboardCourseDetailsModel>> getDashboardCourseDetails();
 }
 
 class DashboardRemoteDataSourceImpl implements DashboardRemoteDataSource {
@@ -33,5 +36,28 @@ class DashboardRemoteDataSourceImpl implements DashboardRemoteDataSource {
       ),
     ];
     return courses;
+  }
+
+  @override
+  Future<List<DashboardCourseDetailsModel>> getDashboardCourseDetails() async {
+    /* Log log = sl<Log>();
+    final response = Api.getDashboardCourseDetails().trim();
+    log.debug(title: 'Dashboard Remote Data Source ==> Response', msg: response);
+    // var encodedString = jsonEncode(response);
+    // log.debug(title: 'Dashboard Remote Data Source ==> Encoded', msg: encodedString);
+    Map<String, dynamic> valueMap = await json.decode(response);
+    log.debug(title: 'Dashboard Remote Data Source ==> Decoded', msg: valueMap);
+    return (valueMap as List)
+        .map((e) => DashboardCourseDetailsModel.fromJson(e))
+        .toList();*/
+    return await Future(
+      () => List.generate(
+        2,
+        (index) => DashboardCourseDetailsModel(
+          module: 'Module $index',
+          content: List.generate(5, (index) => 'Item $index'),
+        ),
+      ),
+    );
   }
 }

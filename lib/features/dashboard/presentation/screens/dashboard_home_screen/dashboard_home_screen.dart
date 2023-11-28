@@ -86,17 +86,18 @@ class EnrolledCourseCardView extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       elevation: 2,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(left: 8, right: 8),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                ClipOval(
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
                   child: SizedBox(
-                    height: 80,
-                    width: 80,
+                    height: 100,
+                    width: 100,
                     child: Image.network(
                       enrolledCoursesEntity.image,
                       fit: BoxFit.cover,
@@ -109,16 +110,17 @@ class EnrolledCourseCardView extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(height: 8),
                       Text(
                         enrolledCoursesEntity.title,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
-                      const SizedBox(height: 12),
                       Row(
                         children: [
                           Icon(
                             Icons.person_pin_outlined,
                             color: Theme.of(context).colorScheme.primary,
+                            size: 16,
                           ),
                           const SizedBox(width: 12),
                           Text(
@@ -127,47 +129,41 @@ class EnrolledCourseCardView extends StatelessWidget {
                           ),
                         ],
                       ),
+                      const SizedBox(height: 8),
+                      LinearProgressIndicator(
+                        value: enrolledCoursesEntity.completedModules /
+                            enrolledCoursesEntity.numberOfModules,
+                        backgroundColor:
+                            Theme.of(context).colorScheme.surfaceVariant,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      Text(
+                        'Completed ${enrolledCoursesEntity.completedModules}/${enrolledCoursesEntity.numberOfModules}',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: OutlinedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, Routes.kDashboardCoursePlayerScreen);
+                          },
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(
+                                color: Theme.of(context).colorScheme.primary),
+                            minimumSize: Size.zero, // Set this
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 4,
+                            ),
+                          ),
+                          child: const Text('Continue Course'),
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ],
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'Course Progress',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ),
-                Expanded(
-                  child: LinearProgressIndicator(
-                    value: enrolledCoursesEntity.completedModules /
-                        enrolledCoursesEntity.numberOfModules,
-                    backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-              ],
-            ),
-            Text(
-              'Modules Completed ${enrolledCoursesEntity.completedModules} of ${enrolledCoursesEntity.numberOfModules}',
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: OutlinedButton(
-                onPressed: () {
-                  Navigator.pushNamed(
-                      context, Routes.kDashboardCoursePlayerScreen);
-                },
-                style: OutlinedButton.styleFrom(
-                  side:
-                      BorderSide(color: Theme.of(context).colorScheme.primary),
-                ),
-                child: const Text('Continue Course'),
-              ),
             ),
           ],
         ),

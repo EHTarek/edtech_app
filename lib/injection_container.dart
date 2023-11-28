@@ -4,7 +4,10 @@ import 'package:edtech_app/features/auth/presentation/business_logic/user_auth_b
 import 'package:edtech_app/features/dashboard/data/data_source/dashboard_remote_data_source.dart';
 import 'package:edtech_app/features/dashboard/data/repositories/dashboard_repository_impl.dart';
 import 'package:edtech_app/features/dashboard/domain/repositories/dashboard_repository.dart';
+import 'package:edtech_app/features/dashboard/domain/use_cases/get_dashboard_course_details.dart';
 import 'package:edtech_app/features/dashboard/domain/use_cases/get_dashboard_enrolled_courses.dart';
+import 'package:edtech_app/features/dashboard/presentation/business_logic/dashboard_course_certificate_bloc/dashboard_course_certificate_bloc.dart';
+import 'package:edtech_app/features/dashboard/presentation/business_logic/dashboard_course_details_bloc/dashboard_course_details_bloc.dart';
 import 'package:edtech_app/features/dashboard/presentation/business_logic/dashboard_enrolled_courses_bloc/dashboard_enrolled_courses_bloc.dart';
 import 'package:edtech_app/log.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -26,17 +29,32 @@ init() async {
 
   ///! Features - Dashboard
   //Bloc
-  sl.registerFactory<DashboardEnrolledCoursesBloc>(
-    () => DashboardEnrolledCoursesBloc(
-      getDashboardProductsCategory: sl(),
-    ),
-  );
+  sl
+    ..registerFactory<DashboardEnrolledCoursesBloc>(
+      () => DashboardEnrolledCoursesBloc(
+        getDashboardProductsCategory: sl(),
+      ),
+    )
+    ..registerFactory<DashboardCourseDetailsBloc>(
+      () => DashboardCourseDetailsBloc(
+        getDashboardCourseDetails: sl(),
+      ),
+    )
+    ..registerFactory<DashboardCourseCertificateBloc>(
+      () => DashboardCourseCertificateBloc(),
+    );
   // Use Cases
-  sl.registerLazySingleton(
-    () => GetDashboardEnrolledCourses(
-      dashboardRepository: sl(),
-    ),
-  );
+  sl
+    ..registerLazySingleton(
+      () => GetDashboardEnrolledCourses(
+        dashboardRepository: sl(),
+      ),
+    )
+    ..registerLazySingleton(
+      () => GetDashboardCourseDetails(
+        dashboardRepository: sl(),
+      ),
+    );
 
   //Repository
   sl.registerLazySingleton<DashboardRepository>(

@@ -6,7 +6,10 @@ import 'package:edtech_app/constants/navigation/route_generator.dart';
 import 'package:edtech_app/constants/navigation/routes.dart';
 import 'package:edtech_app/constants/theme/app_theme.dart';
 import 'package:edtech_app/features/auth/presentation/business_logic/user_auth_bloc/user_auth_bloc.dart';
+import 'package:edtech_app/features/dashboard/domain/use_cases/get_dashboard_course_details.dart';
 import 'package:edtech_app/features/dashboard/domain/use_cases/get_dashboard_enrolled_courses.dart';
+import 'package:edtech_app/features/dashboard/presentation/business_logic/dashboard_course_certificate_bloc/dashboard_course_certificate_bloc.dart';
+import 'package:edtech_app/features/dashboard/presentation/business_logic/dashboard_course_details_bloc/dashboard_course_details_bloc.dart';
 import 'package:edtech_app/features/dashboard/presentation/business_logic/dashboard_enrolled_courses_bloc/dashboard_enrolled_courses_bloc.dart';
 import 'package:edtech_app/firebase_options.dart';
 import 'package:edtech_app/injection_container.dart';
@@ -60,6 +63,14 @@ class MyApp extends StatelessWidget {
           create: (context) => DashboardEnrolledCoursesBloc(
             getDashboardProductsCategory: sl<GetDashboardEnrolledCourses>(),
           ),
+        ),
+        BlocProvider(
+          create: (context) => DashboardCourseDetailsBloc(
+            getDashboardCourseDetails: sl<GetDashboardCourseDetails>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => DashboardCourseCertificateBloc(),
         ),
       ],
       child: MaterialApp(

@@ -1,15 +1,19 @@
 import 'package:equatable/equatable.dart';
 
 class DashboardCourseDetailsEntity extends Equatable {
-  final String moduleName;
-  final List<String> moduleContent;
+  final String module;
+  final List<String> content;
 
   const DashboardCourseDetailsEntity({
-    required this.moduleName,
-    required this.moduleContent,
+    required this.module,
+    required this.content,
   });
 
-  @override
-  List<Object?> get props => [moduleName, moduleContent];
-}
+  Map<String, dynamic> toJson() => {
+    "module": module,
+    "content": List<dynamic>.from(content.map((x) => x)),
+  };
 
+  @override
+  List<Object?> get props => [module, content];
+}

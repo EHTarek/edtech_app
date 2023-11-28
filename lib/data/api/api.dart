@@ -5,7 +5,4 @@ class Api {
   Api._();
 
   ///Dashboard
-  static Uri getDashboardEnrolledCourses() {
-    return Uri.parse('$_baseUrl/get_enrolled_courses/');
-  }
 }

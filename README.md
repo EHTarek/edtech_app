@@ -1,16 +1,31 @@
 # edtech_app
 
-A new Flutter project.
+## `Screenshots`
 
-## Getting Started
+<table style="padding:10px">
+  <tr>
+    <td> 
+         <img src="https://github.com/EHTarek/edtech_app/assets/90475460/d938164f-65e6-4331-8392-a01e3ee4092c" alt="1">
+    </td>
+      
+ <td>
+    <img src="https://github.com/EHTarek/edtech_app/assets/90475460/a625e920-ab35-4c4c-a1d6-1645a6ef7699" alt="2">
+ </td>
+   <td>
+      <img src="https://github.com/EHTarek/edtech_app/assets/90475460/db13f771-d6d3-41db-a432-a858b23c2c29" alt="3">
+   </td>
+  </tr>
+    <tr>
+    <td> 
+         <img src="https://github.com/EHTarek/edtech_app/assets/90475460/e5593074-a3dc-4fe5-9af0-fad53632ad02" alt="4">
+    </td>
+      
+ <td>
+    <img src="https://github.com/EHTarek/edtech_app/assets/90475460/3054d191-ce93-49de-9210-104806d3c998" alt="5">
+ </td>
+  </tr>
+</table>
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
